@@ -12,7 +12,6 @@ class Solution(object):
             else:
                 dic[target-num] = i
 
-
     """
     def twoSum(self, numbers, target):
         hashset = set()
@@ -60,3 +59,6 @@ solution = Solution()
 # outcome = solution.twoSum_list([0,4,3,0], 0)
 outcome = solution.twoSum5([2, 7, 11, 15], 24)
 print(outcome)
+a= {1, 2, 3, 4, 5};
+i = 1;
+print();
