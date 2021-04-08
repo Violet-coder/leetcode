@@ -12,6 +12,47 @@ class Solution(object):
             else:
                 dic[target-num] = i
 
+    def twoSum_hashset(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        hashset = set()
+
+        n = len(nums)
+        for i in range(n):
+            if target - nums[i] in hashset:
+                return [nums.index(target - nums[i]), i]
+            hashset.add(nums[i])
+
+        return [-1, -1]
+
+    def twoSum_twopointers(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        if not nums:
+            return [-1, -1]
+
+        tuple_nums = [(number, index) for index, number in enumerate(nums)]
+        tuple_nums.sort()
+
+        left, right = 0, len(tuple_nums) - 1
+
+        while left < right:
+            if tuple_nums[left][0] + tuple_nums[right][0] > target:
+                right -= 1
+            elif tuple_nums[left][0] + tuple_nums[right][0] < target:
+                left += 1
+            else:
+                return tuple_nums[left][1], tuple_nums[right][1]
+
+        return [-1, -1]
+
+
     """
     def twoSum(self, numbers, target):
         hashset = set()
