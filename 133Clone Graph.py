@@ -14,6 +14,7 @@ Adjacency list is a collection of unordered lists used to represent a finite gra
 
 The given node will always be the first node with val = 1. You must return the copy of the given node as a reference to the cloned graph.
 """
+import collections
 # Definition for a Node.
 class Node(object):
     def __init__(self, val = 0, neighbors = None):
