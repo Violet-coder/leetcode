@@ -14,7 +14,7 @@ class DirectedGraphNode:
          self.neighbors = []
 """
 
-
+import collections
 class Solution:
     """
     @param graph: A list of Directed graph node
