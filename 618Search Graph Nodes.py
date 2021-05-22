@@ -40,7 +40,7 @@ class UndirectedGraphNode:
         self.neighbors = []
 """
 
-
+import collections
 class Solution:
     """
     @param: graph: a list of Undirected graph node

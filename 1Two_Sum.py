@@ -1,22 +1,13 @@
 class Solution(object):
-    def twoSum(self, nums, target):
-        """
-        :type nums: List[int]
-        :type target: int
-        :rtype: List[int]
-        """
-        dic = {}
-        for i, num in enumerate(nums):
-            if num in dic:
-                return [dic[num], i]
-            else:
-                dic[target-num] = i
-
     def twoSum_hashset(self, nums, target):
         """
         :type nums: List[int]
         :type target: int
         :rtype: List[int]
+        """
+        """
+        Hashset could make it quick to find if the element is in the set, using hashset we could reduce the time complexity of finding target - x in the set from O(N) -> O(1)
+        For each of the x, first we check if target - x is already in the set, and then we add x to the set, avoiding we use x twice to treat as a pair incorrectly. E.g.: [2, 4, 5], target = 8
         """
         hashset = set()
 
@@ -52,25 +43,6 @@ class Solution(object):
 
         return [-1, -1]
 
-
-    """
-    def twoSum(self, numbers, target):
-        hashset = set()
-        for number in numbers:
-            if target - number in hashset:
-                return number, target - number
-            hashset.add(number)   
-        return [-1, -1]      
-    """
-    def twoSum_list (self, nums, target):
-        i = list()
-        for num in nums:
-            if target - num in i:
-                i.append(num)
-                return [i.index(target - num), i.index(num, i.index(target - num)+1)]
-            i.append(num)
-        return [-1, -1]
-
     """
     描述给定一个整数数组，找出这个数组中有多少对的和是小于或等于目标值。返回对数。
     Enter: nums = [2, 7, 11, 15], target = 24. 输出: 5. 
@@ -96,10 +68,6 @@ class Solution(object):
 
 
 solution = Solution()
-# outcome = solution.twoSum([2, 7, 11, 15], 9)
-# outcome = solution.twoSum_list([0,4,3,0], 0)
 outcome = solution.twoSum5([2, 7, 11, 15], 24)
 print(outcome)
-a= {1, 2, 3, 4, 5};
-i = 1;
-print();
+
