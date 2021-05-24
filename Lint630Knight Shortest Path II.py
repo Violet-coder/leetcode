@@ -17,7 +17,7 @@ Explanation:
 [0,0]->[2,1]->[0,2]->[2,3]
 """
 
-
+# BFS
 class Solution:
     """
     @param grid: a chessboard included 0 and 1
@@ -67,3 +67,38 @@ class Solution:
                 #     queue.append([i-2, j-1])
 
         return -1
+
+#DP
+class Solution:
+    """
+    @param grid: a chessboard included 0 and 1
+    @return: the shortest path
+    """
+
+    def shortestPath2(self, grid):
+        # write your code here
+        DIRECTIONS = [(-1, -2), (1, -2), (-2, -1), (2, -1)]
+
+        n, m = len(grid), len(grid[0])
+        # state: dp[i][j] represent the minimal steps from 0,0 -> i,j
+        dp = [[float('inf')] * m for _ in range(n)]
+
+        # initialize: dp[0][0] is the start
+        dp[0][0] = 0
+
+        # function
+        for j in range(m):
+            for i in range(n):
+                for delta_x, delta_y in DIRECTIONS:
+                    x = i + delta_x
+                    y = j + delta_y
+                    if grid[i][j]:
+                        continue
+                    if 0 <= x < n and 0 <= y < m:
+                        dp[i][j] = min(dp[i][j], dp[x][y] + 1)
+
+        # answer
+        if dp[n - 1][m - 1] == float('inf'):
+            return -1
+
+        return dp[n - 1][m - 1]
