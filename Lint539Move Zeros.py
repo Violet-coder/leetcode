@@ -29,9 +29,8 @@ class Solution:
         if not nums:
             return []
 
-        n = len(nums)
         left, right = 0, 0
-        pivot = 0
+
         while right < len(nums):
             if nums[right] != 0:
                 nums[left], nums[right] = nums[right], nums[left]

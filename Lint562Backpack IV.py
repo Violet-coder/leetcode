@@ -32,7 +32,7 @@ class Solution:
 
     def backPackIV(self, nums, target):
         # write your code here
-        # dp[i] 前n个数组成和为i的方案数
+        # dp[i][j] 前i个数组成和为j的方案数
         # i 0 => target 一共target+1个
 
         if not nums:

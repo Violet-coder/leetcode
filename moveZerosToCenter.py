@@ -16,7 +16,7 @@ class Solution(object):
             # Find next non zero value
             while not arr[j]:
                 j += 1
-            # Move it to right
+            # Move it to left
             arr[i] = arr[j]
             j += 1
 
