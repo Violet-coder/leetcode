@@ -47,12 +47,6 @@ class Solution(object):
         else:
             return self.less_than_20[num // 100] + " Hundred " + self.helper(num % 100)
 
-solution = Solution()
-outcome = solution.convert_to_words_2(9992)
-print(outcome)
-
-
-
-
-
-
+# solution = Solution()
+# outcome = solution.convert_to_words_2(9992)
+# print(outcome)

@@ -1,3 +1,4 @@
+import collections
 class Solution(object):
     def twoSum_hashset(self, nums, target):
         """
@@ -66,8 +67,65 @@ class Solution(object):
                 right -= 1
         return pair_num
 
+    def getDevices(self, name):
+        groups = {
+            "g1": {
+                "group": ['g3', 'g5'],
+                "member": ['device-101', 'device-106']
+            },
+            "g2": {
+                "group": ['g4'],
+                "member": ['device-105', 'device-108', 'device-113']
+            },
+            "g3": {
+                "group": ['g1'],
+                "member": ['device-201', 'device-306']
+            },
+            "g4": {
+                "group": ['g5'],
+                "member": ['device-110', 'device-401']
+            },
+            "g5": {
+                "group": [],
+                "member": ['device-602', 'device-603']
+            }
+        }
+
+        deviceSet = set()
+        groupSet = set()
+        result = []
+
+        if not groups[name]:
+            return []
+
+        queue = collections.deque([groups[name]])
+
+        while queue:
+            node = queue.popleft()
+            for member in node["member"]:
+                if member not in deviceSet:
+                    result.append(member)
+                    deviceSet.add(member)
+            if node["group"]:
+                for group in node["group"]:
+                    if group not in groupSet:
+                        queue.append(groups[group])
+                        groupSet.add(group)
+
+        return result
+
+    def capitalize(self, str1):
+        newstr = ""
+        for char in str1:
+            if char.isupper():
+                newstr += char
+                continue
+            newstr += chr(ord(char) - 32)
+        return newstr
 
 solution = Solution()
-outcome = solution.twoSum5([2, 7, 11, 15], 24)
-print(outcome)
+name = "g1"
+# outcome = solution.getDevices(name)
+outcome2 = solution.capitalize("abc")
+print(outcome2)
 
