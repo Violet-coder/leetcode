@@ -33,6 +33,7 @@ class Solution(object):
         for i in range(n - 2):
             if i > 0 and nums[i] == nums[i - 1]:
                 continue
+            # A+B+C=0, 在这个方法中枚举第一个数， 所以B C只能在i之后去找
             self.find_TwoSum(nums, i + 1, -nums[i], result)
 
         return result
