@@ -38,3 +38,24 @@ class Solution(object):
                 answer[i - 1] = str(i)
 
         return answer
+
+
+class Solution(object):
+    def fizzBuzz(self, n):
+        """
+        :type n: int
+        :rtype: List[str]
+        """
+        answer = [0] * n
+
+        for i in range(1, n + 1):
+            if not i % 15:
+                answer[i - 1] = "FizzBuzz"
+            elif not i % 3:
+                answer[i - 1] = "Fizz"
+            elif not i % 5:
+                answer[i - 1] = "Buzz"
+            else:
+                answer[i - 1] = str(i)
+
+        return answer
