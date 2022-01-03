@@ -39,29 +39,29 @@ class Solution:
 
         return result
 
-    class Solution:
-        """
-        @param s: a string which consists of lowercase or uppercase letters
-        @return: the length of the longest palindromes that can be built
-        """
+class Solution:
+    """
+    @param s: a string which consists of lowercase or uppercase letters
+    @return: the length of the longest palindromes that can be built
+    """
 
-        def longestPalindrome(self, s):
-            # write your code here
-            # hashmap
-            if not s:
-                return 0
+    def longestPalindrome(self, s):
+    # write your code here
+    # hashmap
+        if not s:
+            return 0
 
-            alpha_hash = set()
-            result = 0
+        alpha_hash = set()
+        result = 0
 
-            for char in s:
-                if char not in alpha_hash:
-                    alpha_hash.add(char)
-                else:
-                    alpha_hash.remove(char)
-                    result += 2
+        for char in s:
+            if char not in alpha_hash:
+                alpha_hash.add(char)
+            else:
+                alpha_hash.remove(char)
+                result += 2
 
-            if len(alpha_hash):
-                result += 1
+        if len(alpha_hash):
+            result += 1
 
-            return result
+        return result

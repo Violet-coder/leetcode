@@ -1,6 +1,6 @@
 import collections
 class Solution(object):
-    def twoSum_hashset(self, nums, target):
+    def twoSum_hashset1(self, nums, target):
         """
         :type nums: List[int]
         :type target: int
@@ -17,6 +17,24 @@ class Solution(object):
             if target - nums[i] in hashset:
                 return [nums.index(target - nums[i]), i]
             hashset.add(nums[i])
+
+        return [-1, -1]
+
+    def twoSum_hashset2(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        if not nums:
+            return [-1, -1]
+
+        hash_set = {}
+
+        for i in range(len(nums)):
+            if target - nums[i] in hash_set:
+                return [hash_set[target - nums[i]], i]
+            hash_set[nums[i]] = i
 
         return [-1, -1]
 
@@ -44,88 +62,16 @@ class Solution(object):
 
         return [-1, -1]
 
-    """
-    描述给定一个整数数组，找出这个数组中有多少对的和是小于或等于目标值。返回对数。
-    Enter: nums = [2, 7, 11, 15], target = 24. 输出: 5. 
-    Explanation:
-    2 + 7 < 24
-    2 + 11 < 24
-    2 + 15 < 24
-    7 + 11 < 24
-    7 + 15 < 24
-    """
-    def twoSum5(self, nums, target):
-        nums.sort()
-        left, right = 0, len(nums)-1
-        pair_num = 0
+"""
+enumerate() 函数用于将一个可遍历的数据对象(如列表、元组或字符串)组合为一个索引序列，同时列出数据和数据下标，一般用在 for 循环当中。
+>>>seq = ['one', 'two', 'three']
+>>> for i, element in enumerate(seq):
+...     print i, element
+... 
+0 one
+1 two
+2 three
+"""
 
-        while left < right:
-            if nums[left] + nums[right] <= target:
-                pair_num += right - left
-                left += 1
-            else:
-                right -= 1
-        return pair_num
 
-    def getDevices(self, name):
-        groups = {
-            "g1": {
-                "group": ['g3', 'g5'],
-                "member": ['device-101', 'device-106']
-            },
-            "g2": {
-                "group": ['g4'],
-                "member": ['device-105', 'device-108', 'device-113']
-            },
-            "g3": {
-                "group": ['g1'],
-                "member": ['device-201', 'device-306']
-            },
-            "g4": {
-                "group": ['g5'],
-                "member": ['device-110', 'device-401']
-            },
-            "g5": {
-                "group": [],
-                "member": ['device-602', 'device-603']
-            }
-        }
-
-        deviceSet = set()
-        groupSet = set()
-        result = []
-
-        if not groups[name]:
-            return []
-
-        queue = collections.deque([groups[name]])
-
-        while queue:
-            node = queue.popleft()
-            for member in node["member"]:
-                if member not in deviceSet:
-                    result.append(member)
-                    deviceSet.add(member)
-            if node["group"]:
-                for group in node["group"]:
-                    if group not in groupSet:
-                        queue.append(groups[group])
-                        groupSet.add(group)
-
-        return result
-
-    def capitalize(self, str1):
-        newstr = ""
-        for char in str1:
-            if char.isupper():
-                newstr += char
-                continue
-            newstr += chr(ord(char) - 32)
-        return newstr
-
-solution = Solution()
-name = "g1"
-# outcome = solution.getDevices(name)
-outcome2 = solution.capitalize("abc")
-print(outcome2)
 
