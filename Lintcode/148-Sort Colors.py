@@ -18,6 +18,7 @@ Challenge
 Could you come up with an one-pass algorithm using only O(1) space?
 """
 
+
 class Solution:
     """
     @param nums: A list of integer which is 0, 1 or 2
@@ -28,27 +29,26 @@ class Solution:
         # write your code here
         if not nums:
             return []
+        zero_one_boundary = self.partition(0, len(nums) - 1, nums, 0)
+        self.partition(zero_one_boundary, len(nums) - 1, nums, 1)
 
-        n = len(nums)
-
-        zero_boundary = self.partition(nums, 0, n - 1, 1)
-        self.partition(nums, zero_boundary, n - 1, 2)
-
-        return nums
-
-    def partition(self, nums, start, end, pivot):
+    def partition(self, start, end, nums, pivot):
         left = start
         right = end
-
         while left <= right:
-            while left <= right and nums[left] < pivot:
+            while left <= right and nums[left] <= pivot:
                 left += 1
-            while left <= right and nums[right] >= pivot:
+            while left <= right and nums[right] > pivot:
+                right -= 1
+            if left <= right:
+                temp = nums[left]
+                nums[left] = nums[right]
+                nums[right] = temp
+                left += 1
                 right -= 1
 
-            if left <= right:
-                nums[left], nums[right] = nums[right], nums[left]
-                left += 1
-                right -= 1
-        return left
+        return left - 1
+
+
+
 
