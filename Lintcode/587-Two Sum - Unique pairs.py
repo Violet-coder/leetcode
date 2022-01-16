@@ -25,27 +25,26 @@ class Solution:
         if not nums:
             return 0
 
-        nums.sort()
-        numOfPairs = 0
-
+        different_pairs = 0
         left, right = 0, len(nums) - 1
+        nums.sort()
         while left < right:
-            if left - 1 >= 0 and nums[left] == nums[left - 1]:
+            if nums[left] + nums[right] == target:
+                different_pairs += 1
                 left += 1
-                continue
-            if right + 1 < len(nums) and nums[right] == nums[right + 1]:
                 right -= 1
-                continue
-            if nums[left] + nums[right] < target:
+                while left < right and nums[left] == nums[left - 1]:
+                    left += 1
+                while left < right and nums[right] == nums[right + 1]:
+                    right -= 1
+            elif nums[left] + nums[right] < target:
                 left += 1
-            elif nums[left] + nums[right] > target:
-                right -= 1
             else:
-                numOfPairs += 1
-                left += 1
                 right -= 1
 
-        return numOfPairs
+        return different_pairs
+
+
 
 
 

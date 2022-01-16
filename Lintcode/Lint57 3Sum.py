@@ -49,9 +49,11 @@ class Solution:
         result = []
         n = len(numbers)
 
+        # 因为是三元组所以用来找而二元组的数组至少长度是2
         for i in range(n - 2):
             if i > 0 and numbers[i] == numbers[i - 1]:
                 continue
+            # i+1确保了target不会成为二元组的中的元素
             self.find_TwoSum(numbers, i + 1, -numbers[i], result)
 
         return result
@@ -73,43 +75,3 @@ class Solution:
                 right -= 1
             else:
                 left += 1
-
-"""
-class Solution:
-    def threeSum(self, numbers):
-        # write your code here
-        if not numbers or len(numbers) < 3:
-            return []
-        
-        numbers.sort()
-        result  = []
-        n = len(numbers)
-
-        for i in range(n - 2):
-            if i > 0 and numbers[i - 1] == numbers[i]:
-                continue
-            self.find_twoSum(numbers, i + 1, -numbers[i], result)
-        
-        return result
-
-    def find_twoSum(self, numbers, start_index, target, result):
-        left = start_index
-        right = len(numbers) - 1
-
-        while left < right:
-            if left - 1 >= start_index and numbers[left - 1] == numbers[left]:
-                left += 1
-                continue
-            if right + 1 < len(numbers) and numbers[right + 1] == numbers[right]:
-                right -= 1
-                continue
-
-            if numbers[left] + numbers[right] < target:
-                left += 1
-            elif numbers[left] + numbers[right] > target:
-                right -= 1
-            else:
-                result.append([-target, numbers[left], numbers[right]])
-                left += 1
-                right -= 1
-"""
