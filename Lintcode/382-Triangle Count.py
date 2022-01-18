@@ -33,17 +33,23 @@ class Solution:
             return 0
 
         S.sort()
-        result = 0
-        n = len(S)
 
-        for i in range(2, n):
-            left = 0
-            right = i - 1
-            while left < right:
-                if S[left] + S[right] > S[i]:
-                    result += right - left
-                    right -= 1
-                else:
-                    left += 1
+        result = 0
+        for i in range(2, len(S)):
+            result += self.twoSum(i - 1, S, S[i])
 
         return result
+
+    def twoSum(self, endIndex, S, edge):
+        pairs = 0
+        left, right = 0, endIndex
+
+        while left < right:
+            if S[left] + S[right] > edge:
+                pairs += right - left
+                right -= 1
+            else:
+                left += 1
+
+        return pairs
+

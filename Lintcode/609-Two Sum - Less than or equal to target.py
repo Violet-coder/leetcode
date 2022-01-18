@@ -27,20 +27,21 @@ class Solution:
         if not nums:
             return 0
 
-        n = len(nums)
         num_pairs = 0
-        nums.sort()
-        left, right = 0, n - 1
+        left, right = 0, len(nums) - 1
 
+        nums.sort()
         while left < right:
-            if nums[left] + nums[right] > target:
-                right -= 1
-            else:
-                #当前最小 + 当前最大 < target, 当前最小可以和小于当前最大的所有元素组成pair
+            if nums[left] + nums[right] <= target:
                 num_pairs += right - left
                 left += 1
+            else:
+                right -= 1
 
         return num_pairs
+
+
+
 
 
 
