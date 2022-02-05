@@ -47,7 +47,35 @@ class Solution:
 
         return nums
 
+    def binary(self, number, requests):
+        result = []
+        for request in requests:
+            if request == "+":
+                number = self.increment(number)
+            else:
+                result.append(self.countOne(number))
+
+        return result
+
+    def increment(self, number):
+        n = int(number, 2)
+        n += 1
+        return bin(number)
+
+    def countOne(self, n):
+
+        count = 0
+        while n:
+            count += 1
+            n = (n - 1) & n
+        return count
+
+
+
+
 solution = Solution()
-outcome = solution.moveZerosToCenter([0, 1, 3, 5, 0, 7, 8])
+outcome = solution.binary("1101", ["?"])
 print(outcome)
+
+
 

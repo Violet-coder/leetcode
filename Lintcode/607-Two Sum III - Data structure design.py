@@ -8,7 +8,7 @@ find(4) // return true
 find(7) // return false
 """
 
-
+# 用双指针的方法:add操作是O(1), find操作是O(nlogn)
 class TwoSum:
     """
     @param number: An integer
@@ -43,5 +43,36 @@ class TwoSum:
                 right -= 1
 
         return False
+
+
+# 用哈希表的方法:add操作是O(1), find操作是O(n)
+class TwoSum1:
+    """
+    @param number: An integer
+    @return: nothing
+    """
+
+    def __init__(self):
+        self.counter = {}
+
+    def add(self, number):
+        # write your code here
+        self.counter[number] = self.counter.get(number, 0) + 1
+
+    """
+    @param value: An integer
+    @return: Find if there exists any pair of numbers which sum is equal to the value.
+    """
+
+    def find(self, value):
+        # write your code here
+        for num1 in self.counter:
+            num2 = value - num1
+            if num1 == num2 and self.counter[num1] >= 2:
+                return True
+            if num1 != num2 and num2 in self.counter:
+                return True
+        return False
+
 
 
